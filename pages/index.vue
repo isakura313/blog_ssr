@@ -1,7 +1,12 @@
 <template>
-  <Tutorial />
+  <Article />
 </template>
 
 <script>
-export default {}
+import Article from '../components/Article.vue'
+export default {
+  components: {
+    Article
+  }
+}
 </script>
