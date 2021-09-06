@@ -51,8 +51,9 @@ $logo_font: 'Inter', sans-serif;
 $main_font: 'Manrope', sans-serif;
 $main__red: #FF008A;
 $background_light_grey: #E5E5E5;
-.article {
-  width: 32%;
+.article{
+  border: 1px solid #E2E2E2;
+  padding:20px 16px 12px 16px;
 }
 .article__img{
   width: 100%;
@@ -62,12 +63,11 @@ $background_light_grey: #E5E5E5;
   font-family: $main_font;
   font-size: 28px;
   font-weight: bold;
-  line-height: 1.2;
+  line-height: 0.8;
 }
 .article__content{
   font-family: $main_font;
   font-weight: 500;
-  line-height: 1.1;
 }
 .edit_wrapper{
   display:flex;

@@ -53,5 +53,7 @@ export default {
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(5, 1fr);
   grid-column-gap: 23px;
+  margin: 46px 90px 136px 90px;
+  grid-row-gap: 40px;
 }
 </style>
