@@ -10,6 +10,11 @@
         :content="article.body"
       />
     </div>
+    <div class="wrap_pag">
+      <Pagination
+        :pag-length="10"
+      />
+    </div>
     <Footer />
   </div>
 </template>
@@ -18,12 +23,14 @@
 import Article from '../components/Article.vue'
 import Header from '../layouts/Header.vue'
 import Footer from '../layouts/Footer.vue'
+import Pagination from '../components/ Pagination.vue'
 
 export default {
   components: {
     Article,
     Header,
-    Footer
+    Footer,
+    Pagination
   },
   data () {
     return {
@@ -55,5 +62,10 @@ export default {
   grid-column-gap: 23px;
   margin: 46px 90px 136px 90px;
   grid-row-gap: 40px;
+}
+.wrap_pag{
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 90px;
 }
 </style>

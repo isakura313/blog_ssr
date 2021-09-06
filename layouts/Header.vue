@@ -40,11 +40,11 @@
   width: 310px;
   position: relative;
   display: flex;
+  background-color: "#3c3c4372FF";
 }
 
 .searchTerm {
   width: 100%;
-  border: 3px solid #00b4cc;
   border-right: none;
   padding: 5px;
   height: 20px;
@@ -55,18 +55,6 @@
 
 .searchTerm:focus {
   color: #00b4cc;
-}
-
-.searchButton {
-  width: 40px;
-  height: 36px;
-  border: 1px solid #00b4cc;
-  background: #00b4cc;
-  text-align: center;
-  color: #fff;
-  border-radius: 0 5px 5px 0;
-  cursor: pointer;
-  font-size: 20px;
 }
 
 /*Resize the wrap to see the search bar change!*/
