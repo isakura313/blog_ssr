@@ -4,7 +4,7 @@
       v-for="(num, index) in arr_pag"
       :key="index"
       class="pagination__button"
-      :class="num == selected ? 'pagination__button_selected' : ''"
+      :class="num === $store.state.paginationNumber ? 'pagination__button_selected' : ''"
       @click="select(num)"
       v-text="num"
     />
@@ -21,50 +21,34 @@ export default {
   },
   data () {
     return {
-      selected: 1,
       arr_pag: []
     }
   },
-  mounted () {
-    this.select()
-  },
-  //   computed: {
-  //     paginationNow () {
-  //       const array = new Array(this.pagLength)
-  //       const newArr = array.map((item, index) => {
-  //         return index + 1
-  //       })
+  computed: {
+    globalPage () {
+      return this.$store.state.paginationNumber
+    }
 
-  //       if (this.selected < 4) {
-  //         const arr = [1, 2, 3, 4, '...', newArr.length]
-  //         return arr
-  //       } else if (this.selected >= 4) {
-  //         const arr = [1, '...', this.selected - 1, this.selected, this.selected + 1, '...', newArr.length]
-  //         return arr
-  //       } else {
-  //         alert(' do nothing')
-  //         return null
-  //       }
-  //     //   const arr = [1, '...', newArr.length / 2, '...', newArr.length]
-  //     //   return arr
-  //     }
-  //   },
+  },
+  mounted () {
+    this.select(1)
+  },
   methods: {
     select (value) {
-      if (!value) {
-        this.selected = 1
-      } else {
-        this.selected = value
-      }
+      this.$store.commit('updatePagination', value)
+      this.$emit('updatePage')
       const array = new Array(this.pagLength)
       const newArr = array.map((item, index) => {
         return index + 1
-      })
-      if (this.selected < 4) {
+      }) // Генерируем Номер
+      if (this.globalPage < 4) {
         const arr = [1, 2, 3, 4, '...', newArr.length]
         this.arr_pag = arr
-      } else if (this.selected >= 4) {
-        const arr = [1, '...', this.selected - 1, this.selected, this.selected + 1, '...', newArr.length]
+      } else if (this.globalPage >= 4 && this.globalPage < (newArr.length - 2)) {
+        const arr = [1, '...', this.globalPage - 1, this.globalPage, this.globalPage + 1, '...', newArr.length]
+        this.arr_pag = arr
+      } else if (this.globalPage >= (newArr.length - 2)) {
+        const arr = [1, '...', newArr.length - 3, newArr.length - 2, newArr.length - 1, newArr.length]
         this.arr_pag = arr
       }
     }
@@ -76,7 +60,7 @@ export default {
 .pagination_wrapper{
     display: flex;
     justify-content: space-between;
-    width: 23%;
+    width: 15%;
 }
 .pagination__button{
     border-radius: 4px;

@@ -2,6 +2,7 @@
   <div>
     <Header />
     <div class="article_wrapper">
+      <Loader v-show="loaderToShow" />
       <Article
         v-for="article in articles"
         :key="article.id"
@@ -13,6 +14,7 @@
     <div class="wrap_pag">
       <Pagination
         :pag-length="10"
+        @updatePage="updatePageNumber"
       />
     </div>
     <Footer />
@@ -24,13 +26,15 @@ import Article from '../components/Article.vue'
 import Header from '../layouts/Header.vue'
 import Footer from '../layouts/Footer.vue'
 import Pagination from '../components/ Pagination.vue'
+import Loader from '../components/Loader.vue'
 
 export default {
   components: {
     Article,
     Header,
     Footer,
-    Pagination
+    Pagination,
+    Loader
   },
   data () {
     return {
@@ -38,19 +42,24 @@ export default {
       articles: [],
       commentsCount: 0,
       limitOnPage: 15,
-      pageNumber: 1
+      loaderToShow: false
     }
   },
   mounted () {
-    this.getData()
+    this.getData(1)
   },
   methods: {
-    async getData () {
-      const articles = await this.$axios.$get(`https://jsonplaceholder.typicode.com/posts?_embed=comments?_page=${this.pageNumber}&_limit=${this.limitOnPage}`)
+    updatePageNumber () {
+      this.getData(this.$store.state.paginationNumber)
+    },
+    async getData (page) {
+      this.loaderToShow = true
+      const articles = await this.$axios.$get(`https://jsonplaceholder.typicode.com/posts?_embed=comments?_page=${page}&_limit=${this.limitOnPage}`)
       this.articles = articles
+      this.loaderToShow = false
     }
-
   }
+
 }
 </script>
 
