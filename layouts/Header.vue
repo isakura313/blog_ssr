@@ -4,20 +4,13 @@
       <span class="header__logo_text"> Logo </span>
     </div>
     <div class="search">
-      <input
-        type="text"
-        class="search__item"
-        placeholder="What are you looking for?"
-      >
-      <button type="submit" class="searchButton">
-        <img src="~/static/search.svg" alt="">
-      </button>
+      <input type="text" class="search__item" placeholder="Поиск" />
     </div>
     <div class="header__posts">
-      <div class="posts" />
-      <p class="posts">
-        Посты
-      </p>
+      <div class="posts">
+        <img src="~/static/icon.svg" class="posts__icon" alt="иконка" />
+        <p class="posts__content">Посты</p>
+      </div>
     </div>
   </header>
 </template>
@@ -33,36 +26,54 @@
   align-items: center;
 }
 .header__logo_text {
-  // font-family: $logo_font;
+  font-family: Inter;
+  font-size: 20px;
+  line-height: 24px;
   font-weight: bold;
 }
 .search {
   width: 310px;
   position: relative;
   display: flex;
-  background-color: "#3c3c4372FF";
+  background-color: rgba(60, 60, 67, 0.1);
+  height: 50px;
+  border-radius: 10px;
 }
-
-.searchTerm {
-  width: 100%;
-  border-right: none;
-  padding: 5px;
-  height: 20px;
-  border-radius: 5px 0 0 5px;
+.search__item {
+  font-size: 17px;
+  width: 90%;
+  margin-left: 10px;
   outline: none;
-  color: #9dbfaf;
+  border: none;
+  background-color: rgba(60, 60, 67, 0);
+  font-family: Manrope;
+}
+.search::before {
+  content: "";
+  width: 30px;
+  height: 100%;
+  background-image: url("~/static/search.svg");
+  background-size: contain;
+  background-position: center center;
+  z-index: 2;
+  background-repeat: no-repeat;
+  margin-left: 8px;
 }
 
-.searchTerm:focus {
-  color: #00b4cc;
+.posts {
+  display: flex;
+  width: 86px;
+  justify-content: space-around;
 }
-
-/*Resize the wrap to see the search bar change!*/
-.wrap {
-  width: 30%;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+.posts__icon {
+  width: 22px;
+}
+.posts__content {
+  font-family: Manrope;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 12px;
+  color: #ff008a;
 }
 </style>

@@ -71,7 +71,6 @@ export default {
   grid-column-gap: 23px;
   margin: 46px 90px 136px 90px;
   grid-row-gap: 40px;
-  background-color: darken(#33ffff, 30%);
 }
 .wrap_pag{
   display: flex;
