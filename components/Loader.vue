@@ -10,15 +10,17 @@
 
 <style>
 .loader_wrap{
-  background-color: rgba(255, 255, 255, 0.507);
+  background-color: rgba(255, 255, 255, 0.8);
   width: 100%;
-  height: 100%;
+  height: 100vh;
+  position: fixed;
+  z-index: 2;
 }
 .loader{
   position: fixed;
   top: 50%;
   left: 50%;
-  z-index: 1;
+  z-index: 3;
 }
 .icon-loader{
     width:200px;

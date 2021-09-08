@@ -1,8 +1,8 @@
 <template>
   <div>
+    <Loader v-show="loaderToShow" />
     <Header />
     <div class="article_wrapper">
-      <Loader v-show="loaderToShow" />
       <Article
         v-for="article in articles"
         :key="article.id"
@@ -71,6 +71,7 @@ export default {
   grid-column-gap: 23px;
   margin: 46px 90px 136px 90px;
   grid-row-gap: 40px;
+  background-color: darken(#33ffff, 30%);
 }
 .wrap_pag{
   display: flex;

@@ -33,7 +33,7 @@
   align-items: center;
 }
 .header__logo_text {
-  font-family: logo_font;
+  // font-family: $logo_font;
   font-weight: bold;
 }
 .search {
