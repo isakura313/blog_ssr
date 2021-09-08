@@ -46,5 +46,6 @@
     0%{transform:rotate(0deg);}
     50%{transform:rotate(-540deg);}
     100%{transform:rotate(-1080deg);}
+    
 }
 </style>
