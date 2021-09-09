@@ -22,38 +22,38 @@ export default {
   data () {
     return {
       arr_pag: []
-    }
+    };
   },
   computed: {
     globalPage () {
-      return this.$store.state.paginationNumber
+      return this.$store.state.paginationNumber;
     }
 
   },
   mounted () {
-    this.select(1)
+    this.select(1);
   },
   methods: {
     select (value) {
-      this.$store.commit('updatePagination', value)
-      this.$emit('updatePage')
-      const array = new Array(this.pagLength)
+      this.$store.commit('updatePagination', value);
+      this.$emit('updatePage');
+      const array = new Array(this.pagLength);
       const newArr = array.map((item, index) => {
-        return index + 1
-      }) // Генерируем Номер
+        return index + 1;
+      }); // Генерируем Номер
       if (this.globalPage < 4) {
-        const arr = [1, 2, 3, 4, '...', newArr.length]
-        this.arr_pag = arr
+        const arr = [1, 2, 3, 4, '...', newArr.length];
+        this.arr_pag = arr;
       } else if (this.globalPage >= 4 && this.globalPage < (newArr.length - 2)) {
-        const arr = [1, '...', this.globalPage - 1, this.globalPage, this.globalPage + 1, '...', newArr.length]
-        this.arr_pag = arr
+        const arr = [1, '...', this.globalPage - 1, this.globalPage, this.globalPage + 1, '...', newArr.length];
+        this.arr_pag = arr;
       } else if (this.globalPage >= (newArr.length - 2)) {
-        const arr = [1, '...', newArr.length - 3, newArr.length - 2, newArr.length - 1, newArr.length]
-        this.arr_pag = arr
+        const arr = [1, '...', newArr.length - 3, newArr.length - 2, newArr.length - 1, newArr.length];
+        this.arr_pag = arr;
       }
     }
   }
-}
+};
 </script>
 
 <style scoped lang="scss">

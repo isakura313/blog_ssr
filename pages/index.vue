@@ -22,11 +22,11 @@
 </template>
 
 <script>
-import Article from '../components/Article.vue'
-import Header from '../layouts/Header.vue'
-import Footer from '../layouts/Footer.vue'
-import Pagination from '../components/ Pagination.vue'
-import Loader from '../components/Loader.vue'
+import Article from '../components/Article.vue';
+import Header from '../layouts/Header.vue';
+import Footer from '../layouts/Footer.vue';
+import Pagination from '../components/ Pagination.vue';
+import Loader from '../components/Loader.vue';
 
 export default {
   components: {
@@ -43,24 +43,24 @@ export default {
       commentsCount: 0,
       limitOnPage: 15,
       loaderToShow: false
-    }
+    };
   },
   mounted () {
-    this.getData(1)
+    this.getData(1);
   },
   methods: {
     updatePageNumber () {
-      this.getData(this.$store.state.paginationNumber)
+      this.getData(this.$store.state.paginationNumber);
     },
     async getData (page) {
-      this.loaderToShow = true
-      const articles = await this.$axios.$get(`https://jsonplaceholder.typicode.com/posts?_embed=comments?_page=${page}&_limit=${this.limitOnPage}`)
-      this.articles = articles
-      this.loaderToShow = false
+      this.loaderToShow = true;
+      const articles = await this.$axios.$get(`https://jsonplaceholder.typicode.com/posts?_embed=comments?_page=${page}&_limit=${this.limitOnPage}`);
+      this.articles = articles;
+      this.loaderToShow = false;
     }
   }
 
-}
+};
 </script>
 
 <style scoped lang ="scss">

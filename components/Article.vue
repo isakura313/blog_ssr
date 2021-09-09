@@ -1,18 +1,20 @@
 <!-- Please remove this file from your project -->
 <template>
   <div class="article">
-    <img :src="articleImg" />
+    <img :src="articleImg">
     <h3 class="article__header" v-text="header" />
     <p class="article__content">
       {{ content }}
     </p>
     <div class="edit_wrapper">
       <div class="article__comments">
-        <img src="~/static/comment.svg" alt="comment, icon" />
+        <img src="~/static/comment.svg" alt="comment, icon">
       </div>
       {{ commentsCount }}
       <div class="article__edit">
-        <img src="~/static/pen.svg" alt="comment, icon" />
+        <nuxt-link :to="editor/id">
+          <img src="~/static/pen.svg" alt="comment, icon">
+        </nuxt-link>
       </div>
     </div>
   </div>
@@ -20,38 +22,43 @@
 
 <script>
 export default {
-    props: {
-      articleImg: {
-        type: String,
-        required: false,
-        default: () => "~/static/img_comp.png",
-      },
-      header: {
-        type: String,
-        required: true,
-        default: () => "Дефолтная информация",
-      },
-      content: {
-        type: String,
-        required: true,
-        default: () => "Дефолтный контент",
-      },
-      commentsCount: {
-        type: Number,
-        required: false,
-        default: () => 0,
-      },
+  props: {
+    idOfArticle: {
+      type: String,
+      required: true,
+      default: () => '~/static/img_comp.png'
     },
-    computed: {
-      textFilter() {
-        return this.content
+    articleImg: {
+      type: String,
+      required: false,
+      default: () => '~/static/img_comp.png'
+    },
+    header: {
+      type: String,
+      required: true,
+      default: () => 'Дефолтная информация'
+    },
+    content: {
+      type: String,
+      required: true,
+      default: () => 'Дефолтный контент'
+    },
+    commentsCount: {
+      type: Number,
+      required: false,
+      default: () => 0
+    }
+  },
+  computed: {
+    textFilter () {
+      return this.content;
       //   if (this.content.length > 52) {
       //     return value;
       //   } else {
       //     return this.content;
       //   }
-      },
-    },
+    }
+  }
 };
 </script>
 

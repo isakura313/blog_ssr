@@ -16,21 +16,13 @@ module.exports = {
   ],
   // add your custom rules here
   rules: {
-    "indent": [
-      "error",
-      "tab"
+    quotes: [
+      'error',
+      'single'
     ],
-    "linebreak-style": [
-      "error",
-      "unix"
-    ],
-    "quotes": [
-      "error",
-      "single"
-    ],
-    "semi": [
-      "error",
-      "always"
+    semi: [
+      'error',
+      'always'
     ]
   }
-}
+};
