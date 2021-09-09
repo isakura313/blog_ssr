@@ -12,9 +12,11 @@
       </div>
       {{ commentsCount }}
       <div class="article__edit">
-        <nuxt-link :to="editor/id">
+        <NuxtLink
+          :to="finalLink"
+        >
           <img src="~/static/pen.svg" alt="comment, icon">
-        </nuxt-link>
+        </NuxtLink>
       </div>
     </div>
   </div>
@@ -24,9 +26,9 @@
 export default {
   props: {
     idOfArticle: {
-      type: String,
+      type: Number,
       required: true,
-      default: () => '~/static/img_comp.png'
+      default: () => 0
     },
     articleImg: {
       type: String,
@@ -50,14 +52,17 @@ export default {
     }
   },
   computed: {
-    textFilter () {
-      return this.content;
-      //   if (this.content.length > 52) {
-      //     return value;
-      //   } else {
-      //     return this.content;
-      //   }
+    finalLink () {
+      return `/editor/${this.idOfArticle}`;
     }
+    // textFilter () {
+    //   return this.content;
+    //   //   if (this.content.length > 52) {
+    //   //     return value;
+    //   //   } else {
+    //   //     return this.content;
+    //   //   }
+    // }
   }
 };
 </script>

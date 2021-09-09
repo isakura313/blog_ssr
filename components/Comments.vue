@@ -1,5 +1,16 @@
 <template>
-  <div class="comments" />
+  <div class="comments">
+    <div
+      :style="{ backgroundImage: 'url(' + commentsImg + ')' }"
+      class="comments__img"
+    />
+    <span class="comments__nickname">
+      {{ userNickName }}
+    </span>
+    <p class="comments__content">
+      {{ userComment }}
+    </p>
+  </div>
 </template>
 
 <script>
@@ -9,7 +20,7 @@ export default {
     commentsImg: {
       type: String,
       required: false,
-      default: () => '~/static/avatar_face.png'
+      default: () => '../avatar_face.svg'
     },
     userNickName: {
       type: String,
@@ -27,5 +38,11 @@ export default {
 </script>
 
 <style lang="scss">
-
+.comments__img{
+  width: 36px;
+  height: 36px;
+  border-style: contain;
+  background-position: center center;
+  background-image: url('');
+}
 </style>

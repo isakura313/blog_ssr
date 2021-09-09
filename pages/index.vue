@@ -6,6 +6,7 @@
       <Article
         v-for="article in articles"
         :key="article.id"
+        :id-of-article="article.id"
         :article-img="img"
         :header="article.title"
         :content="article.body"

@@ -8,10 +8,10 @@
 export default {
   computed: {
     yearNow () {
-      return new Date().getFullYear()
+      return new Date().getFullYear();
     }
   }
-}
+};
 </script>
 
 <style scoped lang ='scss'>
