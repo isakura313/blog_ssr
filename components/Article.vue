@@ -2,20 +2,24 @@
 <template>
   <div class="article">
     <img :src="articleImg">
-    <h3 class="article__header" v-text="header" />
+    <h3 class="article__header">
+      {{ headerFilter }}
+    </h3>
     <p class="article__content">
-      {{ content }}
+      {{ textFilter }}
     </p>
     <div class="edit_wrapper">
       <div class="article__comments">
-        <img src="~/static/comment.svg" alt="comment, icon">
+        <span class="material-icons-outlined">
+          chat_bubble_outline
+        </span>
       </div>
       {{ commentsCount }}
       <div class="article__edit">
         <NuxtLink
           :to="finalLink"
         >
-          <img src="~/static/pen.svg" alt="comment, icon">
+          <span class="material-icons-outlined">mode_edit</span>
         </NuxtLink>
       </div>
     </div>
@@ -23,6 +27,7 @@
 </template>
 
 <script>
+import 'material-icons/iconfont/material-icons.css';
 export default {
   props: {
     idOfArticle: {
@@ -54,15 +59,21 @@ export default {
   computed: {
     finalLink () {
       return `/editor/${this.idOfArticle}`;
+    },
+    headerFilter () {
+      if (this.header.length > 18) {
+        return this.header.split('').splice(0, 18).join('') + '...';
+      } else {
+        return this.header;
+      }
+    },
+    textFilter () {
+      if (this.content.length > 52) {
+        return this.content.split('').splice(0, 50).join('') + '...';
+      } else {
+        return this.content;
+      }
     }
-    // textFilter () {
-    //   return this.content;
-    //   //   if (this.content.length > 52) {
-    //   //     return value;
-    //   //   } else {
-    //   //     return this.content;
-    //   //   }
-    // }
   }
 };
 </script>
