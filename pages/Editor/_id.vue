@@ -22,6 +22,9 @@
         <button>Отменить</button>
       </div>
     </div>
+    <h3 class="comments__header">
+      Комментарии
+    </h3>
     <Comments
       v-for="comments in commmentsData"
       :key="comments.id"
@@ -29,7 +32,6 @@
       :user-comment="comments.body"
     />
   </div>
-  <!-- </div> -->
 </template>
 <script>
 import axios from 'axios';
@@ -58,7 +60,6 @@ export default {
         method: 'GET',
         url: `https://jsonplaceholder.typicode.com/posts/${this.$route.params.id}`
       });
-      // console.log(`https://jsonplaceholder.typicode.com/posts/${this.$route.params.id}`);
       this.articleImg = '../Article.png';
       this.headerOfArticle = dataArticle.data.title;
       this.textToEdit = dataArticle.data.body;
@@ -80,5 +81,17 @@ export default {
 }
 .editor__img {
   height: 285px;
+}
+.comments__header{
+  font-family: Manrope;
+font-style: normal;
+font-weight: 600;
+font-size: 18px;
+line-height: 24px;
+/* identical to box height, or 133% */
+
+display: flex;
+align-items: center;
+letter-spacing: 0.5px;
 }
 </style>

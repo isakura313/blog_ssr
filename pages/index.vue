@@ -1,7 +1,6 @@
 <template>
   <div>
     <Loader v-show="loaderToShow" />
-    <Header />
     <div class="article_wrapper">
       <Article
         v-for="article in articles"
@@ -18,22 +17,17 @@
         @updatePage="updatePageNumber"
       />
     </div>
-    <Footer />
   </div>
 </template>
 
 <script>
 import Article from '../components/Article.vue';
-import Header from '../layouts/Header.vue';
-import Footer from '../layouts/Footer.vue';
 import Pagination from '../components/ Pagination.vue';
 import Loader from '../components/Loader.vue';
 
 export default {
   components: {
     Article,
-    Header,
-    Footer,
     Pagination,
     Loader
   },

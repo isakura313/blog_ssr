@@ -4,12 +4,14 @@
       :style="{ backgroundImage: 'url(' + commentsImg + ')' }"
       class="comments__img"
     />
-    <span class="comments__nickname">
-      {{ userNickName }}
-    </span>
-    <p class="comments__content">
-      {{ userComment }}
-    </p>
+    <div class="comments__text">
+      <span class="comments__nickname">
+        {{ userNickName }}
+      </span>
+      <p class="comments__content">
+        {{ userComment }}
+      </p>
+    </div>
   </div>
 </template>
 
@@ -38,11 +40,31 @@ export default {
 </script>
 
 <style lang="scss">
+.comments{
+  display: grid;
+  grid-template-columns: 56px 300px ;
+}
 .comments__img{
   width: 36px;
   height: 36px;
   border-style: contain;
   background-position: center center;
-  background-image: url('');
+}
+.comments__nickname{
+  font-family: Manrope;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+}
+.comments__content{
+  font-family: Manrope;
+  font-size: 18px;
+  line-height: 22px;
+  display: flex;
+  align-items: center;
+  color: rgba(60, 60, 67, 0.6);
+
 }
 </style>
