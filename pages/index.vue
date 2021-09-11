@@ -21,6 +21,7 @@
 </template>
 
 <script>
+import { mapState, mapActions } from 'vuex';
 import Article from '../components/Article.vue';
 import Pagination from '../components/ Pagination.vue';
 import Loader from '../components/Loader.vue';
@@ -44,12 +45,15 @@ export default {
     this.getData(1);
   },
   methods: {
+    ...mapActions([
+      ''
+    ]),
     updatePageNumber () {
       this.getData(this.$store.state.paginationNumber);
     },
     async getData (page) {
       this.loaderToShow = true;
-      const articles = await this.$axios.$get(`https://jsonplaceholder.typicode.com/posts?_embed=comments?_page=${page}&_limit=${this.limitOnPage}`);
+      // const articles = await this.$axios.$get(``);
       this.articles = articles;
       this.loaderToShow = false;
     }

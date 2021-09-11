@@ -19,7 +19,7 @@
         <NuxtLink
           :to="finalLink"
         >
-          <span class="material-icons-outlined">mode_edit</span>
+          <span class="material-icons-outlined">edit</span>
         </NuxtLink>
       </div>
     </div>
@@ -88,6 +88,12 @@ $background_light_grey: #e5e5e5;
   border: 1px solid #e2e2e2;
   padding: 20px 16px 12px 16px;
   position: relative;
+}
+.article__edit span{
+  color: black;
+}
+.article__edit span:hover{
+  color: red;
 }
 .article__img {
   width: 100%;

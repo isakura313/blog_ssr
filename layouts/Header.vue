@@ -4,12 +4,14 @@
       <span class="header__logo_text"> Logo </span>
     </div>
     <div class="search">
-      <input type="text" class="search__item" placeholder="Поиск" />
+      <input type="text" class="search__item" placeholder="Поиск">
     </div>
     <div class="header__posts">
       <div class="posts">
-        <img src="~/static/icon.svg" class="posts__icon" alt="иконка" />
-        <p class="posts__content">Посты</p>
+        <img src="~/static/blog_icon.svg" class="posts__icon" alt="иконка">
+        <p class="posts__content">
+          Посты
+        </p>
       </div>
     </div>
   </header>
@@ -52,7 +54,7 @@
   content: "";
   width: 30px;
   height: 100%;
-  background-image: url("~/static/search.svg");
+  background-image: url("~/static/search_icon.svg");
   background-size: contain;
   background-position: center center;
   z-index: 2;

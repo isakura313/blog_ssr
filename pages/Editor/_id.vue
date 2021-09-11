@@ -17,9 +17,13 @@
         <div class="icon" />
         <p>Редактировать текст</p>
       </div>
-      <div v-else>
-        <button>Сохранить изменения</button>
-        <button>Отменить</button>
+      <div v-else class="button_edit">
+        <button button_edit__btn button_edit__btn__fullfill>
+          Сохранить изменения
+        </button>
+        <button button_edit__btn button_edit__btn__opacity>
+          Отменить
+        </button>
       </div>
     </div>
     <h3 class="comments__header">
@@ -84,14 +88,21 @@ export default {
 }
 .comments__header{
   font-family: Manrope;
-font-style: normal;
-font-weight: 600;
-font-size: 18px;
-line-height: 24px;
-/* identical to box height, or 133% */
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 24px;
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.5px;
+}
+.button_edit__btn{
 
-display: flex;
-align-items: center;
-letter-spacing: 0.5px;
+}
+.button_edit__btn__fullfill{
+
+}
+.button_edit__btn__opacity{
+  color: red;
 }
 </style>
