@@ -1,7 +1,9 @@
 <template>
   <header class="header">
     <div class="header__logo">
+      <nuxt-link to="/">
       <span class="header__logo_text"> Logo </span>
+      </nuxt-link>
     </div>
     <div class="search">
       <input
@@ -53,6 +55,7 @@ export default {
   font-size: 20px;
   line-height: 24px;
   font-weight: bold;
+  text-decoration: none;
 }
 .search {
   width: 310px;

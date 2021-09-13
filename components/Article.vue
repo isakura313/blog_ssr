@@ -115,4 +115,10 @@ $background_light_grey: #e5e5e5;
   width: 140px;
   justify-content: space-around;
 }
+@media screen and(min-width: 375px){
+  .article{
+    display: grid;
+    grid-template-columns: 60% 40%;
+  }
+}
 </style>

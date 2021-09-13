@@ -66,9 +66,7 @@ export default {
       this.loaderToShow = true;
       await this.$store.dispatch('getArticlesContent');
       this.articles = this.$store.state.articleInfo;
-      // console.log(this.articles);
       await this.$store.dispatch('getCommentsCount', this.articles);
-      console.log(this.$store.state.commentsCount);
       this.commentsCount = this.$store.state.commentsCount;
       this.$store.commit('updateShowLoader', false);
     }
@@ -85,9 +83,14 @@ export default {
   margin: 46px 90px 136px 90px;
   grid-row-gap: 40px;
 }
-.wrap_pag{
+.wrap_pag {
   display: flex;
   justify-content: flex-end;
   margin-right: 90px;
+}
+@media screen and(min-width: 375px){
+  .article_wrapper{
+    grid-template-columns: 1fr;
+  }
 }
 </style>
