@@ -33,12 +33,12 @@ export const mutations = {
     state.commentsInfo = value;
   },
   updateCommentsCount (state, value) {
-    state.commentsCount = value;
+    state.commentsCount.push(value);
   }
 };
 
 export const actions = {
-  async getArticlesContent ({ commit, state }) {
+  async getArticlesContent ({ commit }) {
     const articleInfo = await axios({
       method: 'GET',
       url: `https://jsonplaceholder.typicode.com/posts?_page=${state.paginationNumber}&_limit=9_embed=comments`
@@ -59,15 +59,17 @@ export const actions = {
     });
     commit('updateCommentsInfo', commentsInfo.data);
   },
-  getCommentsCount ({ commit, state }) {
-    const countComments = [];
-    state.articleInfo.map(async (item) => {
-      countComments.push(await axios({
-        method: 'GET',
-        url: `https://jsonplaceholder.typicode.com/posts/${item.id}/comments`
-      }).data);
+  getCommentsCount ({ commit }, value) {
+    value.map(async (item) => {
+      await this.dispatch('getIdCount', item.id);
     });
-    commit('updateCommentsCount', countComments);
+  },
+  async getIdCount ({ commit }, id) {
+    const tempData = await axios({
+      method: 'GET',
+      url: `https://jsonplaceholder.typicode.com/posts/${id}/comments`
+    });
+    commit('updateCommentsCount', tempData.data.length);
   },
   async getSearchConent ({ commit, state }) {
     const searchArticles = await axios({

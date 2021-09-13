@@ -3,12 +3,13 @@
     <Loader v-show="$store.state.showLoader" />
     <div class="article_wrapper">
       <Article
-        v-for="article in articles"
+        v-for="(article, index) in articles"
         :key="article.id"
         :id-of-article="article.id"
         :article-img="img"
         :header="article.title"
         :content="article.body"
+        :comments-count="commentsCount[index]"
       />
     </div>
     <div class="wrap_pag">
@@ -35,7 +36,7 @@ export default {
     return {
       img: 'img_comp.png',
       articles: [],
-      commentsCount: 0,
+      commentsCount: [],
       limitOnPage: 15,
       loaderToShow: false
     };
@@ -53,6 +54,10 @@ export default {
       this.loaderToShow = true;
       await this.$store.dispatch('getArticlesContent');
       this.articles = this.$store.state.articleInfo;
+      // console.log(this.articles);
+      await this.$store.dispatch('getCommentsCount', this.articles);
+      console.log(this.$store.state.commentsCount);
+      this.commentsCount = this.$store.state.commentsCount;
       this.$store.commit('updateShowLoader', false);
     }
   }
