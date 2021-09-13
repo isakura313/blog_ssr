@@ -74,9 +74,10 @@ export const actions = {
   async getSearchConent ({ commit, state }) {
     const searchArticles = await axios({
       method: 'GET',
-      url: `https://github.com/typicode/post?${state.searchNow}`
+      url: `https://jsonplaceholder.typicode.com/posts?=${state.searchNow}`
     });
-    commit('updateAricleInfo', searchArticles);
+    console.log(searchArticles.data);
+    commit('updateArticleInfo', searchArticles.data);
   },
   async updateAricleContent (value) {
     await axios({

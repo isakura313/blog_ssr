@@ -41,6 +41,18 @@ export default {
       loaderToShow: false
     };
   },
+  computed: {
+    searchData: {
+      get () {
+        return this.$store.state.searchNow;
+      }
+    }
+  },
+  watch: {
+    searchData () {
+      this.getData(this.$store.state.paginationNumber);
+    }
+  },
   async mounted () {
     await this.getData(1);
   },
@@ -61,7 +73,6 @@ export default {
       this.$store.commit('updateShowLoader', false);
     }
   }
-
 };
 </script>
 

@@ -4,20 +4,41 @@
       <span class="header__logo_text"> Logo </span>
     </div>
     <div class="search">
-      <input type="text" class="search__item" placeholder="Поиск">
+      <input
+        type="text"
+        class="search__item"
+        placeholder="Поиск"
+        v-model="search"
+        @input="searchNow"
+      />
     </div>
     <div class="header__posts">
       <div class="posts">
-        <img src="~/static/blog_icon.svg" class="posts__icon" alt="иконка">
-        <p class="posts__content">
-          Посты
-        </p>
+        <img src="~/static/blog_icon.svg" class="posts__icon" alt="иконка" />
+        <p class="posts__content">Посты</p>
       </div>
     </div>
   </header>
 </template>
 
 <script>
+export default {
+  computed: {
+    search: {
+      get () {
+        return this.$store.state.searchNow;
+      },
+      set (value) {
+        this.$store.commit('updateSearch', value);
+      }
+    }
+  },
+  methods: {
+    searchNow () {
+      this.$store.dispatch('getSearchConent');
+    }
+  }
+};
 </script>
 
 <style lang="scss">
