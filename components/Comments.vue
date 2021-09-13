@@ -66,4 +66,10 @@ export default {
   align-items: center;
   color: rgba(60, 60, 67, 0.6);
 }
+@media screen and(max-width: 375px){
+  .comments{
+  display: grid;
+  grid-template-columns: 20% 80% ;
+}
+}
 </style>

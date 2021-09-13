@@ -1,7 +1,10 @@
 <!-- Please remove this file from your project -->
 <template>
   <div class="article">
-    <img :src="articleImg">
+    <div
+      :style="{ backgroundImage: 'url(' + articleImg + ')' }"
+      class="article__img"
+    />
     <h3 class="article__header">
       {{ headerFilter }}
     </h3>
@@ -96,8 +99,11 @@ $background_light_grey: #e5e5e5;
   color: red;
 }
 .article__img {
-  width: 100%;
+  // width: 250px;
   height: 200px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
 }
 .article__header {
   font-family: $main_font;
@@ -115,10 +121,32 @@ $background_light_grey: #e5e5e5;
   width: 140px;
   justify-content: space-around;
 }
-@media screen and(min-width: 375px){
+@media screen and(max-width: 375px){
   .article{
     display: grid;
-    grid-template-columns: 60% 40%;
+    flex-direction: column;
+    grid-template-areas: "a  b"
+                          "c b"
+                          "d b";
+    grid-template-columns: repeat(2, 1fr)
+    // grid-template-rows: repeat(2, 1fr);
+  }
+.article__img {
+  width: 50px;
+}
+  .article__header{
+    grid-area: a ;
+  }
+  .article__content{
+    grid-area: c;
+  }
+  .edit_wrapper{
+    grid-area: d;
+  }
+  .article__img{
+    height:auto;
+    width: 100%;
+    grid-area: b;
   }
 }
 </style>

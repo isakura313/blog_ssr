@@ -25,4 +25,9 @@ export default {
   font-weight: 400;
   font-weight: 16px;
 }
+@media screen and(max-width: 375px){
+  .footer{
+    margin: 80px 0px 20px 0px;
+  }
+}
 </style>

@@ -7,12 +7,16 @@ export const state = () => ({
   articleInfo: [], // массив с информацией о статьях
   articleEditContent: '',
   commentsCount: [],
-  commentsInfo: [] // отдельный массив
+  commentsInfo: [], // отдельный массив
+  editNow: false
 });
 
 export const mutations = {
   updateShowLoader (state, value) {
     state.showLoader = value;
+  },
+  updateEditNow (state, value) {
+    state.editNow = value;
   },
   updateArticleEdit (state, value) {
     state.articleEditContent = value;

@@ -74,4 +74,10 @@ export default {
     border: 2px solid #FF008A;
     color: #FF008A;
 }
+@media screen and(max-width: 375px){
+  .pagination_wrapper{
+    width: 100%;
+    margin: 0 auto;
+  }
+}
 </style>

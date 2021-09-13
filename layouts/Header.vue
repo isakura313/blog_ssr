@@ -5,7 +5,16 @@
       <span class="header__logo_text"> Logo </span>
       </nuxt-link>
     </div>
-    <div class="search">
+    <div class="back_mobile" v-if="$store.state.editNow">
+         <nuxt-link to="/">
+    <div class="back_mobile__wrap">
+      <span class="material-icons-outlined back_mobile__wrap_red">chevron_left</span>
+      <span class="mobile__back back_mobile__wrap_red"> Назад </span>
+    </div>
+         </nuxt-link>
+    <h3 class="header_mobile__h3">Пост</h3>
+    </div>
+    <div class="search" v-if="!$store.state.editNow">
       <input
         type="text"
         class="search__item"
@@ -50,12 +59,21 @@ export default {
   justify-content: space-between;
   align-items: center;
 }
+.header_mobile__h3{
+  display:none;
+}
 .header__logo_text {
   font-family: Inter;
   font-size: 20px;
   line-height: 24px;
   font-weight: bold;
+}
+.header__logo a{
   text-decoration: none;
+  color: black;
+}
+.header__logo a:hover{
+  cursor:pointer;
 }
 .search {
   width: 310px;
@@ -101,5 +119,45 @@ export default {
   font-size: 14px;
   line-height: 12px;
   color: #ff008a;
+}
+@media screen and(max-width: 375px){
+  .header {
+    display: flex;
+    flex-direction: column;
+    align-content: flex-start;
+    margin: 0 16px;
+  }
+  .header__logo_text{
+    display: none;
+  }
+  .header_mobile__h3{
+    display: block;
+  }
+  .header__posts{
+    display: none;
+  }
+  .back_mobile{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    width: 100%;
+    align-items: center;
+
+  }
+  .back_mobile__wrap{
+     display: flex;
+    align-items: center;
+  }
+  .back_mobile a{
+    text-decoration: none;
+  }
+  .back_mobile__wrap_red{
+    color: #ff008a;
+  }
+  .back_mobile__wrap .mobile__back{
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 24px;
+  }
 }
 </style>

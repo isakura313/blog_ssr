@@ -88,9 +88,10 @@ export default {
   justify-content: flex-end;
   margin-right: 90px;
 }
-@media screen and(min-width: 375px){
+@media screen and(max-width: 375px){
   .article_wrapper{
     grid-template-columns: 1fr;
+     margin: 0px;
   }
 }
 </style>

@@ -1,7 +1,6 @@
 <template>
   <div class="wrapper_editor">
     <Loader v-show="$store.state.showLoader" />
-
     <div
       :style="{ backgroundImage: 'url(' + articleImg + ')' }"
       class="editor__img"
@@ -11,9 +10,9 @@
     </h3>
 
     <div v-if="editNow" class="editor_task">
-      <pre class="editor__not_edit" v-html="textToEdit" />
-      <div class="wrap_edit">
-        <span class="material-icons-outlined editor_task__pen" @click="toggleEdit">edit</span>
+      <p class="editor__not_edit" v-html="textToEdit" />
+      <div class="wrap_edit"  @click="toggleEdit">
+        <span class="material-icons-outlined editor_task__pen">edit</span>
         <span class="editor_task__content">Редактировать текст</span>
       </div>
     </div>
@@ -50,24 +49,42 @@ export default {
   },
   data () {
     return {
-      articleImg: '~/static/Article.png',
+      width: 0,
+      articleImg: '~/static/mobile_sally.png',
       headerOfArticle: '',
       textToEdit: '',
       editNow: true,
       commmentsData: []
     };
   },
+  destroyed () {
+    window.removeEventListener('resize', this.handleResize);
+    if (this.width < 400) {
+      this.$store.commit('updateEditNow', false);
+    }
+  },
   async mounted () {
+    this.handleResize();
+    console.log(this.width);
+    this.$nextTick(function () {
+      window.addEventListener('resize', this.handleResize);
+    });
+    if (this.width < 400) {
+      this.$store.commit('updateEditNow', true);
+    }
     this.$store.commit('updateShowLoader', true);
     await this.$store.dispatch('getArticleContent', this.$route.params.id);
     await this.$store.dispatch('getCommentsContent', this.$route.params.id);
-    this.articleImg = '../Article.png';
+    this.articleImg = '../mobile_sally.png';
     this.headerOfArticle = this.$store.state.articleEditContent.title;
     this.textToEdit = this.$store.state.articleEditContent.body;
     this.commmentsData = this.$store.state.commentsInfo;
     this.$store.commit('updateShowLoader', false);
   },
   methods: {
+    handleResize () {
+      this.width = window.innerWidth;
+    },
     toggleEdit () {
       this.editNow = !this.editNow;
     },
@@ -100,12 +117,12 @@ export default {
   padding-bottom: 30px;
 }
   .editor__not_edit{
-  font-family: Manrope;
-  font-size: 18px;
-  line-height: 30px;
-  display: flex;
-  align-items: center;
-  color: rgba(60,60,60, 0.6);
+    font-family: Manrope;
+    font-size: 18px;
+    line-height: 30px;
+    display: flex;
+    align-items: center;
+    color: rgba(60,60,60, 0.6);
   }
   .wrap_edit{
     display: flex;
@@ -116,7 +133,7 @@ export default {
   .editor_task__pen{
     color: #FF008A;
   }
-  .editor_task__pen:hover{
+  .wrap_edit:hover{
     cursor: pointer;
     color: blue;
   }
@@ -144,6 +161,7 @@ export default {
 }
 .button_edit__btn:hover{
   background-color: darken(#FF008A, 30%);
+  cursor: pointer;
 }
 .button_edit__btn__fullfill{
   background-color: #FF008A;
@@ -164,6 +182,22 @@ export default {
   display: flex;
   align-items: center;
   letter-spacing: 0.5px;
+}
+@media screen and(max-width: 375px){
+  .editor__img{
+    background-size:contain;
+    background-repeat: no-repeat;
+  }
+  .wrapper_editor{
+    margin: 0;
+  }
+  .wrap_edit{
+    width: 100%;
+  }
+  .editor__not_edit{
+    justify-content: flex-start;
+    width: 340px;
+  }
 }
 
 </style>
