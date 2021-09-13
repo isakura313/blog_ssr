@@ -42,7 +42,7 @@ export default {
 <style lang="scss">
 .comments{
   display: grid;
-  grid-template-columns: 56px 300px ;
+  grid-template-columns: 56px 50% ;
 }
 .comments__img{
   width: 36px;
@@ -65,6 +65,5 @@ export default {
   display: flex;
   align-items: center;
   color: rgba(60, 60, 67, 0.6);
-
 }
 </style>

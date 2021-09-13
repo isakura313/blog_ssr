@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Loader v-show="loaderToShow" />
+    <Loader v-show="$store.state.showLoader" />
     <div class="article_wrapper">
       <Article
         v-for="article in articles"
@@ -21,7 +21,6 @@
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex';
 import Article from '../components/Article.vue';
 import Pagination from '../components/ Pagination.vue';
 import Loader from '../components/Loader.vue';
@@ -41,21 +40,20 @@ export default {
       loaderToShow: false
     };
   },
-  mounted () {
-    this.getData(1);
+  async mounted () {
+    await this.getData(1);
   },
   methods: {
-    ...mapActions([
-      ''
-    ]),
     updatePageNumber () {
       this.getData(this.$store.state.paginationNumber);
     },
     async getData (page) {
+      this.$store.commit('updateShowLoader', true);
+      this.$store.commit('updatePagination', page);
       this.loaderToShow = true;
-      // const articles = await this.$axios.$get(``);
-      this.articles = articles;
-      this.loaderToShow = false;
+      await this.$store.dispatch('getArticlesContent');
+      this.articles = this.$store.state.articleInfo;
+      this.$store.commit('updateShowLoader', false);
     }
   }
 
@@ -66,7 +64,7 @@ export default {
 .article_wrapper{
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(5, 1fr);
+  grid-template-rows: repeat(3, 1fr);
   grid-column-gap: 23px;
   margin: 46px 90px 136px 90px;
   grid-row-gap: 40px;
