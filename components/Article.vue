@@ -147,9 +147,6 @@ $background_light_grey: #e5e5e5;
     grid-template-columns: repeat(2, 1fr)
     // grid-template-rows: repeat(2, 1fr);
   }
-.article__img {
-  width: 50px;
-}
   .article__header{
     grid-area: a ;
   }
@@ -160,8 +157,7 @@ $background_light_grey: #e5e5e5;
     grid-area: d;
   }
   .article__img{
-    height:auto;
-    width: 100%;
+    height: 187px;
     grid-area: b;
   }
 }

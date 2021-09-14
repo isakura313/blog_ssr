@@ -80,7 +80,7 @@ export default {
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 1fr);
   grid-column-gap: 23px;
-  margin: 46px 90px 136px 90px;
+  margin: 46px 90px 40px 90px;
   grid-row-gap: 40px;
 }
 .wrap_pag {
@@ -92,6 +92,10 @@ export default {
   .article_wrapper{
     grid-template-columns: 1fr;
      margin: 0px;
+  }
+  .wrap_pag{
+    margin-top: 40px;
+    margin-right: 0;
   }
 }
 </style>

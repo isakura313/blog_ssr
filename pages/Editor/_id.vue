@@ -8,15 +8,14 @@
     <h3 class="editor__h3">
       {{ headerOfArticle }}
     </h3>
-
     <div v-if="editNow" class="editor_task">
       <p class="editor__not_edit" v-html="textToEdit" />
-      <div class="wrap_edit"  @click="toggleEdit">
+      <div class="wrap_edit" @click="toggleEdit">
         <span class="material-icons-outlined editor_task__pen">edit</span>
         <span class="editor_task__content">Редактировать текст</span>
       </div>
     </div>
-    <div v-else class="editor_task">
+    <div v-else class="editor_task buttons__send">
       <client-only>
         <VueEditor
           v-model="textToEdit"
@@ -68,9 +67,6 @@ export default {
     this.$nextTick(function () {
       window.addEventListener('resize', this.handleResize);
     });
-    if (this.width < 400) {
-      this.$store.commit('updateEditNow', true);
-    }
     this.$store.commit('updateShowLoader', true);
     await this.$store.dispatch('getArticleContent', this.$route.params.id);
     await this.$store.dispatch('getCommentsContent', this.$route.params.id);
@@ -79,6 +75,10 @@ export default {
     this.textToEdit = this.$store.state.articleEditContent.body;
     this.commmentsData = this.$store.state.commentsInfo;
     this.$store.commit('updateShowLoader', false);
+    if (this.width < 400) {
+      this.articleImg = '../mobile_sally.png';
+      this.$store.commit('updateEditNow', true);
+    }
   },
   methods: {
     handleResize () {
@@ -99,7 +99,7 @@ export default {
 
 <style lang="scss">
 .wrapper_editor {
-  margin: 0 90px;
+  margin: 46px 90px 0 90px;
 }
 .editor__img {
   height: 285px;
@@ -184,18 +184,29 @@ export default {
 }
 @media screen and(max-width: 375px){
   .editor__img{
-    background-size:contain;
+    background-size: cover;
     background-repeat: no-repeat;
+    background-position: center center;
   }
   .wrapper_editor{
     margin: 0;
   }
   .wrap_edit{
+    width: 50%;
+  }
+  .buttons__send{
+    display: flex;
     width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .button_edit__btn{
+    margin-right: 0;
   }
   .editor__not_edit{
     justify-content: flex-start;
-    width: 340px;
+    width: 100%
   }
 }
 

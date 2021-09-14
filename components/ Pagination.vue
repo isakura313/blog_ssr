@@ -1,7 +1,7 @@
 <template>
   <div class="pagination_wrapper">
-    <button class="pagination__button" disabled>
-      <span class="material-icons-outlined">chevron_left</span>
+    <button class="pagination__button" :disabled="$store.state.paginationNumber == 1">
+      <span class="material-icons-outlined" @click="getBack">chevron_left</span>
     </button>
     <button
       v-for="(num, index) in arr_pag"
@@ -11,7 +11,7 @@
       @click="select(num)"
       v-text="num"
     />
-    <button class="pagination__button" disabled>
+    <button class="pagination__button" :disabled="$store.state.paginationNumber > 9" @click="getForward">
       <span class="material-icons-outlined">chevron_right</span>
     </button>
   </div>
@@ -34,7 +34,6 @@ export default {
     globalPage () {
       return this.$store.state.paginationNumber;
     }
-
   },
   mounted () {
     this.select(1);
@@ -56,6 +55,20 @@ export default {
       } else if (this.globalPage >= (newArr.length - 2)) {
         const arr = [1, '...', newArr.length - 3, newArr.length - 2, newArr.length - 1, newArr.length];
         this.arr_pag = arr;
+      }
+    },
+    getBack () {
+      if (this.globalPage > 1) {
+        this.$store.commit('updatePagination', this.globalPage - 1);
+        this.$emit('updatePage');
+        this.select(this.globalPage);
+      }
+    },
+    getForward () {
+      if (this.globalPage < 10) {
+        this.$store.commit('updatePagination', this.globalPage + 1);
+        this.$emit('updatePage');
+        this.select(this.globalPage);
       }
     }
   }

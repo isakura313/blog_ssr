@@ -42,7 +42,7 @@ export const mutations = {
 };
 
 export const actions = {
-  async getArticlesContent ({ commit }) {
+  async getArticlesContent ({ commit, state }) {
     const articleInfo = await axios({
       method: 'GET',
       url: `https://jsonplaceholder.typicode.com/posts?_page=${state.paginationNumber}&_limit=9_embed=comments`
@@ -80,7 +80,6 @@ export const actions = {
       method: 'GET',
       url: `https://jsonplaceholder.typicode.com/posts?=${state.searchNow}`
     });
-    console.log(searchArticles.data);
     commit('updateArticleInfo', searchArticles.data);
   },
   async updateAricleContent (value) {
