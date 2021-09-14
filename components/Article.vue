@@ -16,14 +16,14 @@
         <span class="material-icons-outlined">
           chat_bubble_outline
         </span>
-      </div>
-      {{ commentsCount }}
-      <div class="article__edit">
-        <NuxtLink
-          :to="finalLink"
-        >
-          <span class="material-icons-outlined">edit</span>
-        </NuxtLink>
+        <span class="article__comments_content"> {{ commentsCount }} </span>
+        <div class="article__edit">
+          <NuxtLink
+            :to="finalLink"
+          >
+            <span class="material-icons-outlined">edit</span>
+          </NuxtLink>
+        </div>
       </div>
     </div>
   </div>
@@ -110,16 +110,32 @@ $background_light_grey: #e5e5e5;
   font-size: 28px;
   font-weight: bold;
   line-height: 0.8;
+  margin: 16px 0 8px 0;
 }
 .article__content {
   font-family: $main_font;
   font-weight: 500;
+  font-size: 17px;
+  line-height: 22px;
+  color: rgba(60, 60, 67, 0.6);
 }
 .edit_wrapper {
   display: grid;
   grid-template-columns: 34px 20px 56px;
   width: 140px;
   justify-content: space-around;
+}
+.article__comments{
+  display: flex;
+  width: 100px;
+  justify-content: space-around;
+}
+.article__comments_content{
+  font-family: $main_font;
+  font-size: 17px;
+  line-height: 24px;
+  text-align: center;
+  color: rgba(60, 60, 67, 0.6);
 }
 @media screen and(max-width: 375px){
   .article{

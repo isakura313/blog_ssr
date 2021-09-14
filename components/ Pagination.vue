@@ -1,5 +1,8 @@
 <template>
   <div class="pagination_wrapper">
+    <button class="pagination__button" disabled>
+      <span class="material-icons-outlined">chevron_left</span>
+    </button>
     <button
       v-for="(num, index) in arr_pag"
       :key="index"
@@ -8,6 +11,9 @@
       @click="select(num)"
       v-text="num"
     />
+    <button class="pagination__button" disabled>
+      <span class="material-icons-outlined">chevron_right</span>
+    </button>
   </div>
 </template>
 

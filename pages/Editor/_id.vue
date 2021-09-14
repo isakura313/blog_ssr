@@ -50,7 +50,7 @@ export default {
   data () {
     return {
       width: 0,
-      articleImg: '~/static/mobile_sally.png',
+      articleImg: '~/static/Article.png',
       headerOfArticle: '',
       textToEdit: '',
       editNow: true,
@@ -65,7 +65,6 @@ export default {
   },
   async mounted () {
     this.handleResize();
-    console.log(this.width);
     this.$nextTick(function () {
       window.addEventListener('resize', this.handleResize);
     });
@@ -75,7 +74,7 @@ export default {
     this.$store.commit('updateShowLoader', true);
     await this.$store.dispatch('getArticleContent', this.$route.params.id);
     await this.$store.dispatch('getCommentsContent', this.$route.params.id);
-    this.articleImg = '../mobile_sally.png';
+    this.articleImg = '../Article.png';
     this.headerOfArticle = this.$store.state.articleEditContent.title;
     this.textToEdit = this.$store.state.articleEditContent.body;
     this.commmentsData = this.$store.state.commentsInfo;
